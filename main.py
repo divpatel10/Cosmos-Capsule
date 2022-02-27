@@ -29,6 +29,8 @@ for idx in data.index.values:
     newstr = ''
     if "?" in str(idx):
         newstr = idx[:-1]
+        idx_list[j] = newstr 
+        
 
     elif TEN_POWER in str(idx):
         i = idx.index(TEN_POWER) + len(TEN_POWER)
