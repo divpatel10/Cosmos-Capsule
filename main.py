@@ -1,8 +1,9 @@
 from ast import Eq
 import pandas as pd
 
+PLANETARY_FACTSHEET_METRIC = "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
 
-data = pd.read_html("https://nssdc.gsfc.nasa.gov/planetary/factsheet/",index_col=0)
+data = pd.read_html(PLANETARY_FACTSHEET_METRIC,index_col=0)
 
 data = data[0]
 
@@ -11,7 +12,6 @@ data = data[1:]
 
 data.columns = new_header
 
-d_json = data.to_json(orient='index')
 
 TEN_POWER = "(10"
 PER_POWER = "/s /m"
@@ -51,6 +51,7 @@ for idx in data.index.values:
 
 data.index = idx_list
 
-print(list(data.index.values))
-# print(data.head())
 
+d_json = data.to_json(orient='index')
+
+print(d_json)
