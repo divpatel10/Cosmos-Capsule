@@ -51,9 +51,9 @@ def get_factsheet(data_unit = IMPERIAL_DATA_TYPE):
 
 
     data.index = idx_list
+    data = data[:-1]
     d_json = data.to_json(orient='index')
 
-    print(data)
+    print(d_json)
     # return d_json
 
-# get_factsheet(METRIC_DATA_TYPE)
