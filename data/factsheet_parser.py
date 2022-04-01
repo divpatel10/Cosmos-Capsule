@@ -53,7 +53,7 @@ def gen_factsheet(data_unit):
 
 
     data.index = idx_list
-    data = data[:-1]
+    data = data[:-1].transpose()
 
     return data
 

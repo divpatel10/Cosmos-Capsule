@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Query
-from data.factsheet_data import *
+from data.factsheet_parser import *
 from typing import Optional
 import json
 
