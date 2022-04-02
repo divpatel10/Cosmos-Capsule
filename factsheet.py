@@ -1,31 +1,31 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Depends, Request
 from data.factsheet_parser import *
-from typing import Optional
 import json
 
-from models.models import Planet
+from models.Planet import Planet
 
 app = FastAPI()
+
+
+@app.on_event("startup")
+def startup():
+    global scraped_data 
+    scraped_data =  get_factsheet()
+    
 
 @app.get("/")
 def home():
     return {"Data": "Endpoint Missing"}
 
-@app.get("/factsheet/")
-async def factsheet(request: Planet = None, units=METRIC_DATA_TYPE):
+
+@app.get("/factsheet", status_code=200)
+async def factsheet(req: Request, params:Planet = Depends()):
+    print(params)
+    cur_data = scraped_data
+    if req.query_params["units"] == IMPERIAL_DATA_TYPE:
+        cur_data = get_factsheet(IMPERIAL_DATA_TYPE)
     
-    # if viewby == "property":
-    #     data = get_factsheet(KEY_AS_PROPERTY)
-
-    # else:
-
-    if units == IMPERIAL_DATA_TYPE:
-        data = get_factsheet(IMPERIAL_DATA_TYPE)
-    else:
-        data = get_factsheet()
-
-
-    data = data.to_json(orient='index')
+    data = cur_data.to_json(orient='index')
     return json.loads(data)
 
 
