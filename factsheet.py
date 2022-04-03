@@ -35,14 +35,14 @@ async def factsheet(req: Request, params:Planet = Depends()):
 
             cur_data = scraped_data_us
 
+        planet_properties = [v[0] for v in params]
+        for property in planet_properties:
 
+            if req.query_params.get(property) is not None:
+                col_name = [col for col in scraped_data.columns if property.lower() in col.replace(" ","").lower()][0]
+                cur_data = scraped_data[scraped_data[col_name] == str(req.query_params.get(property))]
+                print("Foud Matching Column Name: ",col_name)
 
-        if params.mass is not None :
-            col_name = [col for col in scraped_data.columns if 'Mass' in col][0]
-            cur_data = scraped_data[scraped_data[col_name] == str(params.mass)]
-            print("Foud Matching Column Name: ",col_name)
-
-    
     data = cur_data.to_json(orient='index')
     return json.loads(data)
 
