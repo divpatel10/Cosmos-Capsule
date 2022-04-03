@@ -3,7 +3,7 @@ import pandas as pd
 METRIC_DATA_TYPE = "metric"
 IMPERIAL_DATA_TYPE = "us"
 TEN_POWER = "(10"
-PER_POWER = "/s /m"
+PER_POWER = "/s /m /ft"
 KEY_AS_PROPERTY = "property"
 KEY_AS_PLANET = "planet"
 
@@ -59,6 +59,7 @@ def gen_factsheet(data_unit):
 
 
 def get_factsheet(viewby = KEY_AS_PLANET, units = METRIC_DATA_TYPE):
+
     if viewby == KEY_AS_PROPERTY:
         return gen_factsheet(units).transpose()
     
