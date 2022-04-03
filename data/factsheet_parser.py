@@ -11,11 +11,11 @@ KEY_AS_PLANET = "planet"
 def gen_factsheet(data_unit):
 
     if data_unit == METRIC_DATA_TYPE:
-        PLANETARY_FACTSHEET_METRIC = "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+        PLANETARY_FACTSHEET = "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
     else:
-        PLANETARY_FACTSHEET_METRIC = "https://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_british.html"
+        PLANETARY_FACTSHEET = "https://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_british.html"
 
-    data = pd.read_html(PLANETARY_FACTSHEET_METRIC,index_col=0)
+    data = pd.read_html(PLANETARY_FACTSHEET,index_col=0)
     data = data[0]
 
     new_header = data.iloc[0]
@@ -62,7 +62,6 @@ def get_factsheet(viewby = KEY_AS_PLANET, units = METRIC_DATA_TYPE):
 
     if viewby == KEY_AS_PROPERTY:
         return gen_factsheet(units).transpose()
-    
     return gen_factsheet(units)
 
 

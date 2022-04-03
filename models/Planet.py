@@ -2,7 +2,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 class Planet(BaseModel):
-    mass: Optional[float] = None 
+    mass: Optional[float] = None
     diameter: Optional[float] = None 
     density: Optional[float] = None
     gravity: Optional[float] = None
