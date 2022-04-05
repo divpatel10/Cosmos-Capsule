@@ -37,7 +37,6 @@ async def factsheet(req: Request, params:Planet = Depends()):
         if req.query_params.get("planet") is not None:
             data = json.loads(cur_data.to_json(orient='index'))
             cur_planet = str(req.query_params.get("planet").upper()).replace("\"","")
-
             if cur_planet not in data:
                 return {"Planet":"Not Found"}
 
