@@ -25,23 +25,29 @@ def home():
 async def factsheet(req: Request, params:Planet = Depends()):
     cur_data = scraped_data
 
-    print("All Query Params",req.query_params)
+    print("All Query Params", (dict(req.query_params)))
     print("Planet Model Query Params",params )
 
     if req.query_params is not None:
        
         if req.query_params.get("units") is not None \
              and req.query_params.get("units")  == IMPERIAL_DATA_TYPE:
-
             cur_data = scraped_data_us
 
-        planet_properties = [v[0] for v in params]
-        for property in planet_properties:
+        if req.query_params.get("planet") is not None:
+            data = json.loads(cur_data.to_json(orient='index'))
+            cur_planet = str(req.query_params.get("planet").upper()).replace("\"","")
 
-            if req.query_params.get(property) is not None:
-                col_name = [col for col in scraped_data.columns if property.lower() in col.replace(" ","").lower()][0]
-                cur_data = scraped_data[scraped_data[col_name] == str(req.query_params.get(property))]
-                print("Foud Matching Column Name: ",col_name)
+            return data[cur_planet]
+        
+        else:
+            planet_properties = [v[0] for v in params]
+            for property in planet_properties:
+
+                if req.query_params.get(property) is not None:
+                    col_name = [col for col in scraped_data.columns if property.lower() in col.replace(" ","").lower()][0]
+                    cur_data = scraped_data[scraped_data[col_name] == str(req.query_params.get(property))]
+                    print("Foud Matching Column Name: ",col_name)
 
     data = cur_data.to_json(orient='index')
     return json.loads(data)
