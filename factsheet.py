@@ -38,15 +38,19 @@ async def factsheet(req: Request, params:Planet = Depends()):
             data = json.loads(cur_data.to_json(orient='index'))
             cur_planet = str(req.query_params.get("planet").upper()).replace("\"","")
 
+            if cur_planet not in data:
+                return {"Planet":"Not Found"}
+
             return data[cur_planet]
         
         else:
             planet_properties = [v[0] for v in params]
+            cur_data = scraped_data.copy(deep=True)
             for property in planet_properties:
 
                 if req.query_params.get(property) is not None:
                     col_name = [col for col in scraped_data.columns if property.lower() in col.replace(" ","").lower()][0]
-                    cur_data = scraped_data[scraped_data[col_name] == str(req.query_params.get(property))]
+                    cur_data = cur_data[scraped_data[col_name] == str(req.query_params.get(property))]
                     print("Foud Matching Column Name: ",col_name)
 
     data = cur_data.to_json(orient='index')
