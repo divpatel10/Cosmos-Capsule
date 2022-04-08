@@ -8,6 +8,7 @@ from models.Planet import Planet
 app = FastAPI()
 
 
+# Load the Data into a global variable on startup
 @app.on_event("startup")
 def startup():
     global scraped_data
@@ -16,27 +17,32 @@ def startup():
     scraped_data_us =  get_factsheet(KEY_AS_PLANET,IMPERIAL_DATA_TYPE)
     
 
+# Default EndPoint
 @app.get("/")
 def home():
     return {"Data": "Endpoint Missing"}
 
+# Factsheet Endpoint
 @app.get("/factsheet", status_code=200)
 
+# Parameters - Request is the request body
+#            - Planet Model
 async def factsheet(req: Request, params:Planet = Depends()):
     global cur_data
     cur_data = scraped_data
+
 
     print("All Query Params", (dict(req.query_params)))
     print("Planet Model Query Params",params )
 
     if req.query_params is not None:
        
+       # Check for "units" Query
         if req.query_params.get("units") is not None \
              and req.query_params.get("units")  == IMPERIAL_DATA_TYPE:
-            print('-'*40)
             cur_data = scraped_data_us
-        print(cur_data)
 
+        # Check for "planet" Query and filter the JSON response for the planet
         if req.query_params.get("planet") is not None:
             data = json.loads(cur_data.to_json(orient='index'))
             cur_planet = str(req.query_params.get("planet").upper()).replace("\"","")
@@ -50,9 +56,9 @@ async def factsheet(req: Request, params:Planet = Depends()):
             for property in planet_properties:
 
                 if req.query_params.get(property) is not None:
-                    col_name = [col for col in scraped_data.columns if property.lower() in col.replace(" ","").lower()][0]
-                    cur_data = cur_data[scraped_data[col_name] == str(req.query_params.get(property))]
+                    col_name = [col for col in cur_data.columns if property.lower() in col.replace(" ","").lower()][0]
                     print("Foud Matching Column Name: ",col_name)
+                    cur_data = cur_data[cur_data[col_name] == str(req.query_params.get(property))]
     data = cur_data.to_json(orient='index')
     return json.loads(data)
 

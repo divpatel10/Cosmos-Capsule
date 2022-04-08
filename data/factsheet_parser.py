@@ -29,6 +29,7 @@ def gen_factsheet(data_unit):
 
     # print(list(data.index.values))
 
+# Iterate through the DataFrame for formatting
     for idx in data.index.values:
         newstr = ''
         if "?" in str(idx):
@@ -57,7 +58,7 @@ def gen_factsheet(data_unit):
 
     return data
 
-
+# method that returns the factsheet Dataframe
 def get_factsheet(viewby = KEY_AS_PLANET, units = METRIC_DATA_TYPE):
 
     if viewby == KEY_AS_PROPERTY:

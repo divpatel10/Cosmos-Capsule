@@ -18,6 +18,6 @@ class Planet(BaseModel):
     obliquity: Optional[str] = None
     meantemp: Optional[float] = None
     surfacepressure: Optional[str] = None
-    numofmoons: Optional[int] = None
-    hasrings: Optional[str] = None
+    numberofmoons: Optional[int] = None
+    ringsystem: Optional[str] = None
     hasmagneticfield: Optional[str] = None
