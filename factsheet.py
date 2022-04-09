@@ -1,3 +1,4 @@
+from nis import cat
 from fastapi import FastAPI, Query, Depends, Request
 from pandas import DataFrame
 from data.factsheet_parser import *
@@ -52,11 +53,18 @@ async def factsheet(req: Request, params:Planet = Depends()):
             return data[cur_planet]
         
         else:
+            # This list holds all the possible queries a user can make for a planet's property
             planet_properties = [v[0] for v in params]
+            
+            # iterate through all the queries if the user has made one
             for property in planet_properties:
-
+                
                 if req.query_params.get(property) is not None:
-                    col_name = [col for col in cur_data.columns if property.lower() in col.replace(" ","").lower()][0]
+                    # Match the query with the dataframe
+                    try:
+                        col_name = [col for col in cur_data.columns if property.lower() in col.replace(" ","").lower()][0]
+                    except:
+                        return {"Error": "check /docs for the possible Queries that can be made"}
                     print("Foud Matching Column Name: ",col_name)
                     cur_data = cur_data[cur_data[col_name] == str(req.query_params.get(property))]
     data = cur_data.to_json(orient='index')

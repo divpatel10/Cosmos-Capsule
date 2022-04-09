@@ -20,4 +20,4 @@ class Planet(BaseModel):
     surfacepressure: Optional[str] = None
     numberofmoons: Optional[int] = None
     ringsystem: Optional[str] = None
-    hasmagneticfield: Optional[str] = None
+    globalmagneticfield: Optional[str] = None
