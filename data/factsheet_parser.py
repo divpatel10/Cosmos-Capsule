@@ -4,8 +4,6 @@ METRIC_DATA_TYPE = "metric"
 IMPERIAL_DATA_TYPE = "us"
 TEN_POWER = "(10"
 PER_POWER = "/s /m /ft"
-KEY_AS_PROPERTY = "property"
-KEY_AS_PLANET = "planet"
 
 # Method reads a url and returns the DataFrame of the table from the URL
 def gen_factsheet(data_unit):
@@ -59,10 +57,7 @@ def gen_factsheet(data_unit):
     return data
 
 # method that returns the factsheet Dataframe
-def get_factsheet(viewby = KEY_AS_PLANET, units = METRIC_DATA_TYPE):
-
-    if viewby == KEY_AS_PROPERTY:
-        return gen_factsheet(units).transpose()
+def get_factsheet( units = METRIC_DATA_TYPE):
     return gen_factsheet(units)
 
 

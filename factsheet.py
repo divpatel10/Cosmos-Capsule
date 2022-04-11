@@ -15,8 +15,7 @@ def startup():
     global scraped_data
     global scraped_data_us 
     scraped_data =  get_factsheet()
-    scraped_data_us =  get_factsheet(KEY_AS_PLANET,IMPERIAL_DATA_TYPE)
-    
+    scraped_data_us =  get_factsheet(IMPERIAL_DATA_TYPE)
 
 # Default EndPoint
 @app.get("/")
