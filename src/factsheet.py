@@ -27,12 +27,11 @@ async def read_root(req: Request, params:Planet = Depends()):
     global cur_data
     cur_data = scraped_data
 
-
     print("All Query Params", (dict(req.query_params)))
     print("Planet Model Query Params",params )
 
     if req.query_params is not None:
-       
+
        # Check for "units" Query
         if req.query_params.get("units") is not None \
              and req.query_params.get("units")  == IMPERIAL_DATA_TYPE:

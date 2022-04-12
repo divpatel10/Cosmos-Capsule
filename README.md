@@ -2,7 +2,7 @@
 
 ## Installation:
 ### Install dependencies: `pip3 install -r requirements.txt` 
-### Run the API: `uvicorn factsheet:app --reload`
+### Run the API: `python3 main.py`
 ### Endpoints:
 * `/factsheet` 
 	* GET request to this endpoint will respond with a JSON object which will contain all the information about the planet facts.
