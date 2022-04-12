@@ -1,3 +1,4 @@
 factsheet_env/
 plan.txt
 **/__pycache__
+.env
