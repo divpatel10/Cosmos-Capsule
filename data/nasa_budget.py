@@ -11,17 +11,14 @@ def get_link(sheet_name):
     ADD_KEY = f"?key={SHEETS_API}"
     NASA_MISSION_BUDGET = f"https://sheets.googleapis.com/v4/spreadsheets/{SPREADSHEET_ID}/values/"
 
-    return f"{NASA_MISSION_BUDGET}{sheet_name}{ADD_KEY}"
+    URL = f"{NASA_MISSION_BUDGET}{sheet_name}{ADD_KEY}"
 
-def get_mission():
     try:
-        url = requests.get(get_link("Mission Costs"))
+        url = requests.get(URL).text
     except:
-        print("Unhandled Exception")
         return("Unhandled Exception")
+    return url
     
 
-
-
-data = json.loads(get_mission)
+data = json.loads(get_link("Mission Costs"))
 print(data)
