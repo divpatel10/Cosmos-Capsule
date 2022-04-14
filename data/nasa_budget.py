@@ -24,6 +24,11 @@ def get_data_json(sheet_name):
 
     df_sheet = pd.DataFrame.from_dict(data_json)
 
+    # make the first row as column header
+    new_header = df_sheet.iloc[0]
+    df_sheet = df_sheet[1:]
+    df_sheet.columns = new_header
+
     return df_sheet
     
 
@@ -31,9 +36,14 @@ def get_data_json(sheet_name):
 
 def get_mission_costs(only_summary = False):
     df_sheet = get_data_json("Mission Costs")
-    # drop all rows except the first 4
-    df_sheet = df_sheet.drop( df_sheet.index.to_list()[4:] ,axis = 0 )
-    df_sheet = df_sheet.transpose()
+
+    
+
+    if only_summary:
+        # drop all rows except the first 4
+        df_sheet = df_sheet.drop( df_sheet.index.to_list()[4:] ,axis = 0 )
+        # df_sheet = df_sheet.transpose()
+
     print(df_sheet)
     # if its only summary, we only need the first 
     
