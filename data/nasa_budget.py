@@ -29,6 +29,8 @@ def get_data_json(sheet_name):
     df_sheet = df_sheet[1:]
     df_sheet.columns = new_header
 
+
+
     return df_sheet
     
 
@@ -44,7 +46,7 @@ def get_mission_costs(only_summary = False):
         df_sheet = df_sheet.drop( df_sheet.index.to_list()[4:] ,axis = 0 )
         # df_sheet = df_sheet.transpose()
 
-    print(df_sheet)
+    return df_sheet
     # if its only summary, we only need the first 
     
 get_mission_costs()
