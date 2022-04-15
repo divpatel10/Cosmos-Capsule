@@ -12,6 +12,6 @@ router = APIRouter(
 
 @router.get("/mission")
 async def mission():
-    df = get_mission_costs(True)
-    data = df.to_json(orient='index')
-    return json.loads(data)
+    data = get_mission_costs()
+    return data
+    
