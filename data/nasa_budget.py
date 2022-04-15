@@ -9,7 +9,6 @@ load_dotenv()
 SHEETS_API = os.getenv('SHEETS_API_KEY')
 SPREADSHEET_ID = "12frTU01gfT1CXGWFimN3whf4348F_r3XolTqBt02OyM"
 
-
 def get_data_json(sheet_name):
     ADD_KEY = f"?key={SHEETS_API}"
     NASA_MISSION_BUDGET = f"https://sheets.googleapis.com/v4/spreadsheets/{SPREADSHEET_ID}/values/"
@@ -33,14 +32,10 @@ def get_data_json(sheet_name):
     new_header = df_sheet.iloc[0]
     df_sheet = df_sheet[1:]
     df_sheet.columns = new_header
-    # print(json.dumps( json.loads(temp.transpose().to_json(orient='index')), indent=4))
     return df_sheet
 
     
-
-
-
-def get_mission_costs(only_summary = False):
+def get_mission_costs():
     df_sheet = get_data_json("Mission Costs")
 
     # if its only summary, we only need the first four rows from the google sheet
