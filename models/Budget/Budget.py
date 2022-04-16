@@ -1,4 +1,3 @@
-from optparse import Option
 from typing import Optional
 from pydantic import BaseModel
 

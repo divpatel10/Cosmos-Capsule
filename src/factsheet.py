@@ -1,13 +1,7 @@
-from nis import cat
-from fastapi import FastAPI, Query, Depends, Request
+from fastapi import  Depends, Request, APIRouter
 from data.factsheet_parser import *
-import json
-
 from models.Planet import Planet
-
-from fastapi import APIRouter
-from typing import Optional
-from fastapi import Query
+import json
 
 #APIRouter creates path operations for item module
 router = APIRouter(
