@@ -11,7 +11,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/mission")
+@router.get("/summary")
 async def mission(req: Request, params:Budget = Depends()):
     data = get_mission_costs()
     
