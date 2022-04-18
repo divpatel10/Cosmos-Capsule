@@ -16,6 +16,4 @@ async def mission(req: Request, params:Budget = Depends()):
     data = get_mission_costs()
     
     print(req.query_params)
-    
-
     return data

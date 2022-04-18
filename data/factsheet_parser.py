@@ -25,7 +25,6 @@ def gen_factsheet(data_unit):
     idx_list = data.index.tolist()
     j = 0
 
-    # print(list(data.index.values))
 
 # Iterate through the DataFrame for formatting
     for idx in data.index.values:
