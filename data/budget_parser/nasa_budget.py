@@ -1,10 +1,9 @@
-import os
-from dotenv import load_dotenv
-from gsheets_parser import *
+
+from data.budget_parser.google_sheets_parser import get_data_json
 import json
 import numpy as np
+from dotenv import load_dotenv
 load_dotenv()
-    
 # method formats the Mission Costs google sheet and returns its data
 def get_mission_costs():
     df_sheet = get_data_json("Mission Costs")

@@ -1,9 +1,7 @@
 import os
 from dotenv import load_dotenv
-from numpy import full
 import requests, json
 import pandas as pd
-import numpy as np
 load_dotenv()
 
 SHEETS_API = os.getenv('SHEETS_API_KEY')

@@ -1,5 +1,5 @@
 from nis import cat
-from data.nasa_budget import *
+from data.budget_parser.nasa_budget import *
 from fastapi import APIRouter, Depends, Request
 
 from models.Budget.Budget import Budget
@@ -15,5 +15,6 @@ router = APIRouter(
 async def mission(req: Request, params:Budget = Depends()):
     data = get_mission_costs()
     
-    print(req.query_params)
     return data
+
+
