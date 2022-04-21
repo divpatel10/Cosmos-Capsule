@@ -11,8 +11,14 @@
 		* `planet`: To filter a specifc Planet's Info(eg `/factsheet?planet=mars`)
 
 * `/budget/summary` 
+	* In order to run `Budget` Endpoints,Obtain an API for Google sheets from the Google Developer Console,
+	 	create a `.env' file in the base directory and write the following line in the .env file:
+		 
+        `SHEETS_API_KEY=\<ENTER_YOUR_API_KEY>`
+
 	* GET request to this endpoint will respond with a JSON object which will data about the budget of NASA Missions
 	
 
 ### Notes:
 -For Factsheet, Although they are not planets, The API also contains data for Moon and Pluto
+
