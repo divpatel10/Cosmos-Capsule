@@ -12,7 +12,7 @@
 
 * `/budget/summary` 
 	* In order to run `Budget` Endpoints,Obtain an API for Google sheets from the Google Developer Console,
-	 	create a `.env' file in the base directory and write the following line in the .env file replacing
+	 	create a `.env` file in the base directory and write the following line in the .env file replacing
 		 `ENTER_YOUR_API_KEY` with the API key obtained from Google Developer Console:
 		 
         `SHEETS_API_KEY=ENTER_YOUR_API_KEY`
