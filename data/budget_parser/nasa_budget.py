@@ -4,10 +4,11 @@ import json
 import numpy as np
 from dotenv import load_dotenv
 load_dotenv()
+
 # method formats the Mission Costs google sheet and returns its data
 def get_mission_costs():
     df_sheet = get_data_json("Mission Costs")
-
+    
     # if its only summary, we only need the first four rows from the google sheet
     # drop all rows except the first 4
     full_sheet = df_sheet
@@ -35,7 +36,7 @@ def get_mission_costs():
             # Transpose the newly filtered matrix ( 1 row, col- Year, val : spending)
             cur_data = cur_data.transpose()
             
-            # convert to json, Remove the
+            # convert to json
             cur_data_json = json.loads(cur_data.to_json(orient='index'))[col]
             
             #Append to the final mission
@@ -43,4 +44,16 @@ def get_mission_costs():
             
     return data_json
 
+def get_mission_detail(mission_name):
+    df_sheet = get_data_json(mission_name)
 
+    #Removes the "Official LCC" Column
+
+    # df_sheet = df_sheet.transpose()
+
+    print(df_sheet.columns.tolist())
+
+    print(df_sheet.head(3)
+)
+    data_json = json.loads(df_sheet.to_json(orient='records'))
+    return data_json
