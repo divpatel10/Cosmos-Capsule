@@ -44,16 +44,9 @@ def get_mission_costs():
             
     return data_json
 
+
 def get_mission_detail(mission_name):
     df_sheet = get_data_json(mission_name)
 
-    #Removes the "Official LCC" Column
-
-    # df_sheet = df_sheet.transpose()
-
-    print(df_sheet.columns.tolist())
-
-    print(df_sheet.head(3)
-)
     data_json = json.loads(df_sheet.to_json(orient='records'))
     return data_json
