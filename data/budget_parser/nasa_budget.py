@@ -44,11 +44,18 @@ def get_mission_costs():
             
     return data_json
 
+def get_mission_list():
+    df_sheet = get_data_json("Mission Costs")
+
+    data = {}
+    data["List of All Missions"] = df_sheet.columns.values[1:].tolist()
+    data_json = json.loads(json.dumps(data) )
+    print(data_json)
+    return data_json
 
 def get_mission_detail(mission_name):
     df_sheet = get_data_json(mission_name)
 
     df_sheet["Notes"].fillna("", inplace = True)
-    print(df_sheet["Notes"])
     data_json = json.loads(df_sheet.to_json(orient='records'))
     return data_json

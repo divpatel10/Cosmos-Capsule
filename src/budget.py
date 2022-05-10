@@ -11,6 +11,10 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
+@router.get("/")
+async def missions_base():
+    data = get_mission_list()
+    return data
 @router.get("/missions/{mission_name}")
 async def mission(mission_name: str, req: Request):
 
