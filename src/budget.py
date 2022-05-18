@@ -12,17 +12,20 @@ router = APIRouter(
 )
 
 @router.get("/")
-async def missions_base():
+async def missions_base(req: Request):
+    print(req.query_params)
+
     data = get_mission_list()
     return data
-@router.get("/missions/{mission_name}")
-async def mission(mission_name: str, req: Request):
 
+@router.get("/all")
+async def mission_summary():
+    data = get_mission_costs()    
+    return data
+
+@router.get("/{mission_name}")
+async def mission(mission_name: str, req: Request):
+    print(mission_name)
     data = get_mission_detail(mission_name)
     return data
 
-@router.get("/summary")
-async def mission_summary(req: Request, params:Budget = Depends()):
-    data = get_mission_costs()
-    
-    return data
