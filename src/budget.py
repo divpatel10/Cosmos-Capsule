@@ -25,7 +25,6 @@ async def mission_summary():
 
 @router.get("/{mission_name}")
 async def mission(mission_name: str, req: Request):
-    print(mission_name)
     data = get_mission_detail(mission_name)
     return data
 

@@ -4,3 +4,4 @@ dotenv
 numpy
 pandas
 requests
+beautifulsoup4
