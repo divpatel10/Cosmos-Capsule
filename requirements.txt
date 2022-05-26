@@ -1,7 +1,8 @@
 fastapi
 uvicorn
-dotenv
+python-dotenv
 numpy
 pandas
 requests
 beautifulsoup4
+lxml
