@@ -3,3 +3,4 @@ plan.txt
 **/__pycache__
 .env
 .vscode
+data/target-links.txt
