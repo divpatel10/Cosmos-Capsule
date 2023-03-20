@@ -12,7 +12,6 @@ def get_data_json(sheet_name):
     NASA_MISSION_BUDGET = f"https://sheets.googleapis.com/v4/spreadsheets/{SPREADSHEET_ID}/values/"
 
     URL = f"{NASA_MISSION_BUDGET}{sheet_name}{ADD_KEY}"
-
     try:
         url = requests.get(URL).text
     except:
